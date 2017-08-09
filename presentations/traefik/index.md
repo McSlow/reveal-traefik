@@ -1,9 +1,8 @@
 <section data-state="no-title-footer">
-
-# Traefik: a modern Loadbalancer/Reverse Proxy 
-## devops meetup franken
-### by Bjoern Pohl
-
+![traefik](images/traefik.png)
+## Traefik: a modern Loadbalancer/Reverse Proxy 
+### devops meetup franken
+#### by Björn Pohl
 ---
 
 ## Salve
