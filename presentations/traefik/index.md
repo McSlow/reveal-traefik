@@ -1,12 +1,12 @@
 <section data-state="no-title-footer">
 
-# Demo Presentation
-## Created for the docker image
-### by Janosch Deurer
+# Traefik: a modern Loadbalancer/Reverse Proxy 
+## devops meetup franken
+### by Bjoern Pohl
 
 ---
 
-## Hallo
+## Salve
 
 This presentation will give you examples what you can do with the reveal.js of
 this docker image.
