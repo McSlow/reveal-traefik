@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /usr/bin/sudo -i -ujohn /bin/bash
