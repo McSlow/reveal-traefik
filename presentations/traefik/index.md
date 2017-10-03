@@ -7,12 +7,14 @@ Bjoern Pohl, Senior Systems Engineer @Paessler
 
 ## What is Traefik ?
 
+Note: Talk about loadbalancer and stuff
 ---
 ## Comparison to competitors
 
-
+Note: Apache and Haproxy do not allow dynamic configuration, at least not that easy.
 ---
 ## Backends
+
 
 
 --
