@@ -2,10 +2,22 @@
 ![traefik](images/traefik.png)
 ## Traefik: a modern Loadbalancer/Reverse Proxy 
 ### devops meetup franken
-#### by Björn Pohl
+Bjoern Pohl, Senior Systems Engineer @Paessler
 ---
 
-## Salve
+## What is Traefik ?
+
+---
+## Comparison to competitors
+
+
+---
+## Backends
+
+
+--
+
+## Let's Encrypt
 
 This presentation will give you examples what you can do with the reveal.js of
 this docker image.
