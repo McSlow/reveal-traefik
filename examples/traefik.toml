@@ -1,0 +1,36 @@
+logLevel = "DEBUG"
+[entryPoints]
+  [entryPoints.http]
+        address = ":80"
+        [entryPoints.http.redirect]
+                entryPoint = "https"
+  [entryPoints.https]
+        address = ":443"
+        [entryPoints.https.tls]
+defaultEntryPoints = ["http", "https"]
+
+#Lets Encrypt
+[acme]
+email = "bjoern.acme@datenwalze.de"
+storage = "/srv/traefik/acme.json"
+entryPoint = "https"
+OnHostRule = true
+[[acme.domains]]
+   main = "cosmic.bptd.de"
+
+#Web UI
+[web]
+address = ":8080"
+ReadOnly = true
+ [web.statistics]
+   RecentErrors = 10
+   [web.auth.basic]
+     users = ["bjoern:$apr1$k60DAGfZ$Ss46MG1rhtohXO1TP8lp71"]
+
+#docker backend
+[docker]
+endpoint = "unix:///var/run/docker.sock"
+domain = "bptd.de"
+watch = true
+exposedbydefault = true
+

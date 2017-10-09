@@ -5,10 +5,10 @@ revealjs:
     - "35729:35729"
   volumes:
    - ./presentations:/revealjs/presentations
-shell:
-  build: shell
-  ports:
-    - "57575:57575"
-  volumes:
-    - .:/slides
+#shell:
+#  build: shell
+#  ports:
+#    - "57575:57575"
+#  volumes:
+#    - .:/slides
 

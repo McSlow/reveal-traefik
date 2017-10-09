@@ -1,0 +1,19 @@
+-traefik:
+  image: traefik
+  command:  --configFile=/etc/traefik.toml
+  ports:
+    - "80:80"
+    - "8080:8080"
+    - "443:443"
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - ./traefik.toml:/etc/traefik.toml
+
+-server1:
+  image: mcslow/hostname
+  hostname: application1
+  labels: 
+    - traefik.frontend.entryPoints=http,https
+    - traefik.frontend.passHostHeader=false 
+    - traefik.frontend.rule=Host:application1.bptd.de
+
