@@ -8,6 +8,7 @@
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     - ./traefik.toml:/etc/traefik.toml
+    - ./letsencrypt:/letsencrypt  
 
 -server1:
   image: mcslow/hostname

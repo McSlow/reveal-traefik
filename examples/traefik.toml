@@ -12,7 +12,7 @@ defaultEntryPoints = ["http", "https"]
 #Lets Encrypt
 [acme]
 email = "bjoern.acme@datenwalze.de"
-storage = "/srv/traefik/acme.json"
+storage = "/letsencrypt/acme.json"
 entryPoint = "https"
 OnHostRule = true
 [[acme.domains]]

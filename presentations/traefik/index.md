@@ -64,8 +64,6 @@ Note: Apache and Haproxy do not allow dynamic configuration, at least not that e
 ```toml
  #/etc/traefik.toml
  #generic stuff
- traefikLogsFile = "/var/log/traefik.log"
- accessLogsFile = "/var/log/traefik_access.log"
  logLevel = "DEBUG"
  #entrypoints
  [entryPoints]

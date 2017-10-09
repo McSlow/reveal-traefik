@@ -1,0 +1,15 @@
+-server2:
+  image: mcslow/hostname
+  hostname: application2
+  labels: 
+    - traefik.frontend.entryPoints=http,https
+    - traefik.frontend.passHostHeader=false 
+    - traefik.frontend.rule=Host:application2.bptd.de
+
+-server3:
+  image: mcslow/hostname
+  hostname: application3
+  labels: 
+    - traefik.frontend.entryPoints=http,https
+    - traefik.frontend.passHostHeader=false 
+    - traefik.frontend.rule=Host:application3.bptd.de
