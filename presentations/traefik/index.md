@@ -7,16 +7,19 @@ Bjoern Pohl, Senior Systems Engineer @Paessler
 
 ## What is Traefik ?
 
-Traefik is a Cloud/Microservice-enabled reverse proxy / loadbalancer
+Traefik is a<br> 
+Cloud/Microservice-enabled 
+reverse proxy / loadbalancer
 
 Note: Talk about loadbalancer and stuff
 ---
 
-Another one? We already have HAProxy, Apache, Nginx...
+## Another one? 
+We already have HAProxy, Apache, Nginx...
 
 ---
 
-Yes, but:
+# Yes, but:
 * As long as you need a static lb/rp, all of them are fine.
 * If you need dynamic reconfiguration at runtime you will find yourself messing around with something like
   * consul-template for consul-driven microservice architectures
@@ -43,6 +46,34 @@ Note: Apache and Haproxy do not allow dynamic configuration, at least not that e
 (image shamelessly stolen from traefik.io)
 
 ---
+## Usecases
+---
+
+## Frontend for your VPS
+
+* your dockerized Blog
+  * automatic routing available, we'll see that later.
+* some static configs for various Webinterfaces (mysqladmin, squirrelmail, whatever..)
+
+---
+
+## Ingress controller for K8S
+
+* name-, path-based routing available
+* further customisations using annotations
+* traefik itself also lives in k8s.
+
+---
+
+## Fullstack microservice infrastructure
+
+* traefik usually living on dedicated hosts
+* clustering is possible
+* configuration usually controlled by k-v store (consul, ...)
+
+
+
+
 ## Config
 * Entrypoint
   * Ports to listen on
