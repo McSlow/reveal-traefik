@@ -71,10 +71,15 @@ Note: Apache and Haproxy do not allow dynamic configuration, at least not that e
 * clustering is possible
 * configuration usually controlled by k-v store (consul, ...)
 
-
-
+---
 
 ## Config
+
+basically 3 sections:
+
+
+---
+
 * Entrypoint
   * Ports to listen on
   * Certificates
