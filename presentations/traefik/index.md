@@ -138,7 +138,7 @@ Note: Apache and Haproxy do not allow dynamic configuration, at least not that e
 
 #Thanks!
 
-## https://github.com/mcslow/reveal-traefik
-
+* https://github.com/mcslow/reveal-traefik
+* https://traefik.io
 
 
