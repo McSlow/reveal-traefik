@@ -7,121 +7,143 @@ Bjoern Pohl, Senior Systems Engineer @Paessler
 
 ## What is Traefik ?
 
+Traefik is a<br> 
+Cloud/Microservice-enabled 
+reverse proxy / loadbalancer
+
+Note: Talk about loadbalancer and stuff
 ---
-## Comparison to competitors
 
-
----
-## Backends
-
-
---
-
-## Let's Encrypt
-
-This presentation will give you examples what you can do with the reveal.js of
-this docker image.
+## Another one? 
+We already have HAProxy, Apache, Nginx...
 
 ---
 
-## Vertical Slides
+# Yes, but:
+* As long as you need a static lb/rp, all of them are fine.
+* If you need dynamic reconfiguration at runtime you will find yourself messing around with something like
+  * consul-template for consul-driven microservice architectures
+  * etcd/confd ...
+  * your own tinkered bash/python/whatever scripts...
+* some of the above solutions are not even able to activate substantial configuration changes at runtime.
+Note: Apache and Haproxy do not allow dynamic configuration, at least not that easy.
+---
+## Features:
+* Let's Encrypt built-in
+* Single Go Binary! (But official Docker Image available, too)
+* Backends built-in for:
+  * Docker (both plain docker and swarm mode)
+  * K8S
+  * Mesos/Marathon
+  * nearly all relevant K-V Stores (etcd, consul,..)
+  * Amazon ECS, DynamoDB
+  * REST Api
+  * tiny web frontend
+  * ...and of course still a file-based config
+---
+## Traefik to the rescue!
+![architecture](images/architecture.png)
+(image shamelessly stolen from traefik.io)
 
-Slides can be nested
+---
+## Usecases
+---
 
---
+## Frontend for your VPS
 
-## Downtown
-
-And it goes down.
+* your dockerized Blog
+  * automatic routing available, we'll see that later.
+* some static configs for various Webinterfaces (mysqladmin, squirrelmail, whatever..)
 
 ---
 
-## Shortcuts
+## Ingress controller for K8S
 
-* Press **ESC** for a slide overview
-* Press **M** to get a menu, a button for the menu can be added in the config.
-* Press **S** to open the speaker view
-* Press **b** or **.** to pause the presentation
-* Click on the button in the bottom left corner to enable writing on this
-  slide or on a chalkboard
-
-Note: Here you can see also some notes.
+* name-, path-based routing available
+* further customisations using annotations
+* traefik itself also lives in k8s.
 
 ---
 
-## Unordered Lists
+## Fullstack microservice infrastructure
 
-* bla
-* blubb <!-- .element: class="fragment" data-fragment-index="2" -->
-* bla blubb <!-- .element: class="fragment" data-fragment-index="3" -->
-
----
-
-## Ordered List
-
-1. Bla
-1. Bubber
+* traefik usually living on dedicated hosts
+* clustering is possible
+* configuration usually controlled by k-v store (consul, ...)
 
 ---
 
-## Stiling in Markdown
+## Config
 
-Make things **bold** or *italic*
+basically 3 sections:
+
 
 ---
 
-## Code
+* Entrypoint
+  * Ports to listen on
+  * Certificates
+  * Redirects
+---
+* Frontend
+  * Routes incoming Request to backend
+    * depending on url, path, headers, regexp, ....
+  * modify requests (i.e. coolapp.somedomain.com -> somedomain.com/coolapp)
+  * filters (http headers)
+---
+* Backend
+  * Backend Servers (1-N, Loadbalancing..)
+  * Backend Services (Docker, Kubernetes, ...) 
 
+---
+#### simple config with docker backend
+```toml
+ #/etc/traefik.toml
+ #generic stuff
+ logLevel = "DEBUG"
+ #entrypoints
+ [entryPoints]
+   [entryPoints.http]
+         address = ":80"
+         [entryPoints.http.redirect]
+                 entryPoint = "https"
+   [entryPoints.https]
+         address = ":443"
+         [entryPoints.https.tls]
+ defaultEntryPoints = ["http", "https"]
+ #Lets Encrypt
+ [acme]
+ email = "john.doe@somedomain.com"
+ storage = "/srv/traefik/acme.json"
+ entryPoint = "https"
+ OnHostRule = true
+ [[acme.domains]]
+   main = "www.somedomain.com"
+ #Web UI
+ [web]
+ address = ":8080"
+ ReadOnly = true
+  [web.statistics]
+    RecentErrors = 10
+    [web.auth.basic]
+      users = ["john:$apr1$ktosecure4u!1TP8lp71"]
+ 
+ #docker backend
+ [docker]
+ endpoint = "unix:///var/run/docker.sock"
+ domain = "somedomain.com"
+ watch = true
+ exposedbydefault = true #whoa! 
 ```
-function linkify( selector ) {
-  if( supports3DTransforms ) {
+---
 
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
-}
-```
+# Demo Time!
 
 ---
 
-## Tables
+#Thanks!
 
-| this  | is    | a       |
-|-------|-------|---------|
-| nice  | table | with    |
-| some  | weird | content |
+* https://github.com/mcslow/reveal-traefik
+* https://traefik.io
 
----
-
-## Mathjax
-
-$$ \sqrt{\frac{\Pi}{\Gamma}} \LaTeX $$
-
----
-
-## Graphs
-
-<iframe style="overflow:hidden;margin:5px 5px auto auto;" class="stretch" scrolling="no" id="chart-frame-1" data-chart></iframe>
-
----
-
-## More Graphs
-
-<div id="mynetwork"></div>
-<div id="blubber" class="fragment"></div>
-
----
-
-### Even More Graphs
-
-<div id="tree_network"></div>
-<div id="tree_add_node" class="fragment"></div>
-<div id="tree_add_label" class="fragment"></div>
 
