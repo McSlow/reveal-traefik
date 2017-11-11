@@ -4,7 +4,7 @@
   labels: 
     - traefik.frontend.entryPoints=http,https
     - traefik.frontend.passHostHeader=false 
-    - traefik.frontend.rule=Host:application2.bptd.de
+    - traefik.frontend.rule=Host:application2.acmecorp.com
 
 -server3:
   image: mcslow/hostname
@@ -12,4 +12,4 @@
   labels: 
     - traefik.frontend.entryPoints=http,https
     - traefik.frontend.passHostHeader=false 
-    - traefik.frontend.rule=Host:application3.bptd.de
+    - traefik.frontend.rule=Host:application3.acmecorp.com

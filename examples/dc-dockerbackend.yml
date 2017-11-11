@@ -16,5 +16,5 @@
   labels: 
     - traefik.frontend.entryPoints=http,https
     - traefik.frontend.passHostHeader=false 
-    - traefik.frontend.rule=Host:application1.bptd.de
+    - traefik.frontend.rule=Host:application1.acmecorp.com
 

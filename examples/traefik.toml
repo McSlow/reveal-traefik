@@ -11,12 +11,12 @@ defaultEntryPoints = ["http", "https"]
 
 #Lets Encrypt
 [acme]
-email = "bjoern.acme@datenwalze.de"
+email = "joe@acmecorp.com"
 storage = "/letsencrypt/acme.json"
 entryPoint = "https"
 OnHostRule = true
 [[acme.domains]]
-   main = "cosmic.bptd.de"
+   main = "cosmic.acmecorp.com"
 
 #Web UI
 [web]
@@ -25,12 +25,12 @@ ReadOnly = true
  [web.statistics]
    RecentErrors = 10
    [web.auth.basic]
-     users = ["bjoern:$apr1$k60DAGfZ$Ss46MG1rhtohXO1TP8lp71"]
+     users = ["joe:$apr1$secure4youp71"]
 
 #docker backend
 [docker]
 endpoint = "unix:///var/run/docker.sock"
-domain = "bptd.de"
+domain = "acmecorp.com"
 watch = true
 exposedbydefault = true
 
